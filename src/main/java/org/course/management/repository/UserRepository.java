@@ -1,0 +1,1 @@
+package org.course.management.repository;public interface UserRepository {}
