@@ -1,0 +1,1 @@
+package org.course.management.service;public interface UserService {}
