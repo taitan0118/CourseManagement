@@ -1,1 +1,1 @@
-package org.course.management.service;public interface UserService {}
+package org.course.management.service;import org.course.management.entity.User;import java.util.List;import java.util.Optional;public interface UserService {    Optional<User> findByUserId(int userId);    List<User> findAllUser();    User doSaveUser(User user);    User updateUser(int userId, User updatedUser);    void doDeleteUserById(int userId);    User findByUsername(String username);}
