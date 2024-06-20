@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class RateServiceImpl implements RateService {
 
     @Autowired
     private RateRepository rateRepository;
-
 
     @Override
     public List<Rate> getAllRate() {
@@ -25,13 +25,13 @@ public class RateServiceImpl implements RateService {
     }
 
     @Override
-    public List<Rate> getByRateId(Integer rateId) {
-        return rateRepository.findByRateId(rateId);
+    public List<Rate> getRatesByCourseId(int courseId) {
+        return rateRepository.findByCourseId(courseId);
     }
 
     @Override
     public void doGetDelete(int id) {
-           rateRepository.deleteById(id);
+        rateRepository.deleteById(id);
     }
 
 }
