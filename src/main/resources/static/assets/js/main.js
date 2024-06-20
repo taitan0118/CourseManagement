@@ -24,3 +24,20 @@ function linkColor(){
 }
 
 sidebarLink.forEach(l => l.addEventListener('click', linkColor))
+
+// User cố tình truy cập Admin
+document.addEventListener("DOMContentLoaded", function () {
+    // Kiểm tra roleName trong localStorage
+    let roleName = JSON.parse(localStorage.getItem('loggedInUser')).role.roleName;
+    if (roleName === "User") {
+        window.location.href = '/404';
+    }
+});
+
+// Xóa loggedInUser trong localStorage
+document.getElementById('logoutButton').addEventListener('click', function () {
+    // Xóa thông tin người dùng khỏi localStorage
+    localStorage.removeItem('loggedInUser');
+    // Chuyển hướng đến trang đăng nhập
+    window.location.href = '/account/dang-nhap';
+});
