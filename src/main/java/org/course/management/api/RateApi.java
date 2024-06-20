@@ -8,10 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api-rate")
+@RequestMapping("/rate-api")
 public class RateApi {
     @Autowired
     private RateService rateService;
@@ -33,7 +34,7 @@ public class RateApi {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/postSaveRate")
+    @PostMapping("/postRate")
     public ResponseEntity<?> doPostSaveRate(@RequestBody Rate rate) {
         Map<String, Object> result = new HashMap<>();
         try {
@@ -50,13 +51,14 @@ public class RateApi {
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/getRateById/{rateId}")
-    public ResponseEntity<?> doGetRateById(@PathVariable Integer rateId) {
+    @GetMapping("/getRatesByCourseId/{courseId}")
+    public ResponseEntity<?> doGetRateById(@PathVariable Integer courseId) {
         Map<String, Object> result = new HashMap<>();
         try {
+            List<Rate> rates = rateService.getRatesByCourseId(courseId);
             result.put("success", true);
             result.put("status", "Call Api success");
-            result.put("data", rateService.getByRateId(rateId));
+            result.put("data", rates);
         } catch (Exception e) {
             result.put("error", false);
             result.put("status", "Call Api error");
@@ -65,6 +67,7 @@ public class RateApi {
         }
         return ResponseEntity.ok(result);
     }
+
     @DeleteMapping("/deleteRateById/{id}")
     public ResponseEntity<?> doDeleteRateById(@PathVariable int id) {
         Map<String, Object> result = new HashMap<>();
