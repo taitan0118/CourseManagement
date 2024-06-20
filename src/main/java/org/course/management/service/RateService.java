@@ -9,7 +9,7 @@ public interface RateService {
 
     Rate doSaveRate(Rate rate);
 
-    List<Rate> getByRateId(Integer rateId);
+    List<Rate> getRatesByCourseId(int courseId);
 
     void doGetDelete(int id);
 

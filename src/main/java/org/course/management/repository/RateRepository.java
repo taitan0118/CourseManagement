@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface RateRepository extends JpaRepository <Rate, Integer>{
-    @Query("SELECT r FROM Rate r WHERE r.rateId = :rateId")
-    List<Rate> findByRateId(@Param("rateId") Integer rateId);
+    @Query(value = "SELECT r FROM Rate r WHERE r.course.courseId = :courseId")
+    List<Rate> findByCourseId(@Param("courseId") int courseId);
 }
