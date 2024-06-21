@@ -1,9 +1,10 @@
 function resetForm() {
     document.getElementById('idInput').value = '';
     document.getElementById('nameInput').value = '';
-    document.getElementById('imageInput').value = '';
+    // document.getElementById('imageInput').value = '';
     document.getElementById('topicInput').value = '';
     document.getElementById('dateInput').value = '';
+    document.getElementById('creationDate').value = '';
 }
 
 function deleteCourse(button) {
@@ -64,7 +65,7 @@ function postCourse() {
             courseName: courseName,
             courseImage: courseImage,
             topic: {
-                id: topic
+                topicName: topic
             },
             // instructor: {
             //     userId: gv
@@ -76,7 +77,7 @@ function postCourse() {
             courseName: courseName,
             courseImage: courseImage,
             topic: {
-                id: topic
+                topicName: topic
             },
             // instructor: {
             //     userId: gv
@@ -161,25 +162,27 @@ function updateCourse(button) {
         courseName: data[1],
         courseImage: data[2],
         topic: data[3],
-        date: data[4]
+        date: data[4],
+        duration: data[5]
     }
     fillDataToForm(course)
 }
 
 fillDataToForm = (course) => {
     console.log(course.courseId)
-    console.log(course.courseImage)
 
     document.getElementById('idInput').value = course.courseId;
     document.getElementById('idInput').focus();
     document.getElementById('nameInput').value = course.courseName;
     document.getElementById('nameInput').focus();
     document.getElementById('imagePreview').src = course.courseImage;
-    document.getElementById('topicInput').value = course.topic;
-    document.getElementById('topicInput').focus();
+    document.getElementById('topicInput').value = course.topic.topicName;
     document.getElementById('dateInput').value = course.date;
     document.getElementById('dateInput').focus();
+    document.getElementById('creationDate').value = course.duration;
+    document.getElementById('creationDate').focus();
 }
+
 
 function uploadFile() {
     const fileInput = document.getElementById('fileInput');
@@ -200,4 +203,8 @@ function uploadFile() {
         .catch(error => {
             console.error('There was an error!', error);
         });
+}
+
+function val() {
+    console.log(document.getElementById("topicInput").value)
 }
