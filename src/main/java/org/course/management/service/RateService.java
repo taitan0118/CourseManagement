@@ -13,5 +13,7 @@ public interface RateService {
 
     void doGetDelete(int id);
 
+    Double doGetAverageRate(int courseId);
+
 }
 
