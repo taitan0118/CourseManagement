@@ -38,7 +38,6 @@ public class RateApi {
     public ResponseEntity<?> doPostSaveRate(@RequestBody Rate rate) {
         Map<String, Object> result = new HashMap<>();
         try {
-            result = new HashMap<>();
             result.put("success", true);
             result.put("status", "Call Api success");
             result.put("data", rateService.doSaveRate(rate));
@@ -72,9 +71,9 @@ public class RateApi {
     public ResponseEntity<?> doDeleteRateById(@PathVariable int id) {
         Map<String, Object> result = new HashMap<>();
         try {
+            rateService.doGetDelete(id);
             result.put("success", true);
             result.put("status", "Call Api success");
-            rateService.doGetDelete(id);
         } catch (Exception e) {
             result.put("error", false);
             result.put("status", "Call Api error");
