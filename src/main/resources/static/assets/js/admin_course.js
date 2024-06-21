@@ -57,6 +57,7 @@ function postCourse() {
     let topic = document.getElementById('topicInput').value;
     // let gv = document.getElementById('gvInput').value;
     let creationDate = document.getElementById('dateInput').value;
+    let duration = document.getElementById('duration').value;
 
     let insertCourse = {}
     if (courseId) {
@@ -65,24 +66,26 @@ function postCourse() {
             courseName: courseName,
             courseImage: courseImage,
             topic: {
-                topicName: topic
+                topicId: topic
             },
             // instructor: {
             //     userId: gv
             // },
-            creationDate: creationDate
+            creationDate: creationDate,
+            videoDuration: duration
         };
     } else {
         insertCourse = {
             courseName: courseName,
             courseImage: courseImage,
             topic: {
-                topicName: topic
+                topicId: topic
             },
             // instructor: {
             //     userId: gv
             // },
-            creationDate: creationDate
+            creationDate: creationDate,
+            videoDuration: duration
         };
     }
     console.table(insertCourse)
@@ -147,12 +150,20 @@ function updateCourse(button) {
 
     let tds = button.parentElement.parentElement.getElementsByTagName('td')
     let data = Array.from(tds).map((td) => {
+        var tdVar ;
+        const attrTd = td.getAttribute('data-value');
+        console.log('attr:'+attrTd)
+        if(attrTd !== null )
+        {
+          return tdVar =  attrTd;
+        }
         if (td.id === 'img-avatar') {
             let img = td.querySelector('img');
-            return img ? img.src : '';
+            tdVar =  img ? img.src : '';
         } else {
-            return td.textContent;
+            tdVar =  td.textContent;
         }
+        return tdVar;
     });
     console.table(tds)
     console.table(data)
@@ -169,14 +180,16 @@ function updateCourse(button) {
 }
 
 fillDataToForm = (course) => {
-    console.log(course.courseId)
+    console.log('filldata')
+    console.log(course)
 
     document.getElementById('idInput').value = course.courseId;
     document.getElementById('idInput').focus();
     document.getElementById('nameInput').value = course.courseName;
     document.getElementById('nameInput').focus();
     document.getElementById('imagePreview').src = course.courseImage;
-    document.getElementById('topicInput').value = course.topic.topicName;
+
+    document.getElementById('topicInput').value = course.topic;
     document.getElementById('dateInput').value = course.date;
     document.getElementById('dateInput').focus();
     document.getElementById('creationDate').value = course.duration;
