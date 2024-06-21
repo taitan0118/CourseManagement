@@ -13,4 +13,7 @@ import java.util.List;
 public interface RateRepository extends JpaRepository <Rate, Integer>{
     @Query(value = "SELECT r FROM Rate r WHERE r.course.courseId = :courseId")
     List<Rate> findByCourseId(@Param("courseId") int courseId);
+
+    @Query(value = "SELECT AVG(number_star) FROM cm_rate WHERE course_id = :courseId", nativeQuery = true)
+    Double getAverageStar(@Param("courseId") int courseId);
 }
