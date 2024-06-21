@@ -34,5 +34,10 @@ public class RateServiceImpl implements RateService {
         rateRepository.deleteById(id);
     }
 
+    @Override
+    public Double doGetAverageRate(int courseId) {
+        return rateRepository.getAverageStar(courseId);
+    }
+
 }
 
