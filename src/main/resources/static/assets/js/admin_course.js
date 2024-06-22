@@ -68,9 +68,6 @@ function postCourse() {
             topic: {
                 topicId: topic
             },
-            // instructor: {
-            //     userId: gv
-            // },
             creationDate: creationDate,
             videoDuration: duration
         };
@@ -81,9 +78,6 @@ function postCourse() {
             topic: {
                 topicId: topic
             },
-            // instructor: {
-            //     userId: gv
-            // },
             creationDate: creationDate,
             videoDuration: duration
         };
@@ -192,8 +186,8 @@ fillDataToForm = (course) => {
     document.getElementById('topicInput').value = course.topic;
     document.getElementById('dateInput').value = course.date;
     document.getElementById('dateInput').focus();
-    document.getElementById('creationDate').value = course.duration;
-    document.getElementById('creationDate').focus();
+    document.getElementById('duration').value = course.duration;
+    document.getElementById('duration').focus();
 }
 
 
